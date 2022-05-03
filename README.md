@@ -5,7 +5,7 @@ React Custom Hook - useReactiveListState
 
 <br>
 
-:star::star: **[Demo請點我](https://react-ts-pqejdq.stackblitz.io/)**:star::star:
+:star::star: **[Demo請點我](https://use-reactive-list-state.vercel.app/)**:star::star:
 
 **useState** vs **useReactiveListState**
 
@@ -89,21 +89,21 @@ stateDiagram
     ListView --> ItemStore2
     ListView --> ItemStore3
     
-    ItemStore1 --> Item1 : observerble
-    Item1 --> ItemStore1 : observer
+    ItemStore1 --> Item1 : render
+    Item1 --> ItemStore1 : subscribe
     
-    ItemStore2 --> Item2 : observerble
-    Item2 --> ItemStore2 : observer
+    ItemStore2 --> Item2 : render
+    Item2 --> ItemStore2 : subscribe
     
-    ItemStore3 --> Item3 : observerble
-    Item3 --> ItemStore3 : observer
+    ItemStore3 --> Item3 : render
+    Item3 --> ItemStore3 : subscribe
 
     ListView : ListView
     ListView : ReactiveListState
 
 ```
 
-hook其中的結構有使用到[mobx](https://mobx.js.org/react-integration.html)做state management，在自身內部把每個item value用`ItemStore`包起來，並賦予observable(可被觀察)特性，透過`reactiveList.render`取得需要render的Component並賦予observer(觀察者)特性，**每組觀察者與可被觀察者形成獨立的交互關係，在觀察到變化時進行重繪**
+hook其中的結構有使用到[rxjs](https://react-rxjs.org/)的非同步函式`Subject`，透過`reactiveList.render`取得需要render的Component並且訂閱對應的item資料，在`reactiveList.updateItem`觸發item資料更新，同時向訂閱的Component發佈重繪的指令，在，**每組資料與其Component形成獨立的交互關係，在資料變化時針對單筆資料進行重繪**
 
 
 
