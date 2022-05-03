@@ -33,7 +33,7 @@ interface ReactiveListState<T = any> {
  */
 export const useReactiveListState = <T,>(defaultList: T[]) => {
 
-    const listStore = useRef<ItemStore<T>[]>(defaultList.map((item) => new ItemStore(item)));
+    const listStore = useRef<ItemStore<T>[]>(initListStore(defaultList));
 
     const { forceUpdate } = useRerender();
 

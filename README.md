@@ -55,12 +55,11 @@ stateDiagram
 
 這時候如果去網路上爬文，得到的答案大概會告訴你把`Item`及相關function用`useCallback`、`useMemo`包起來，而這麼做以後畫面確實有比較順暢了
 
-:::info
+
+
 :bulb: 但在我的觀點來看，`useCallback`、`useMemo`會讓react把時間花在比較每個Item有無變化上，list數量較大或比較內容較為複雜的情況下，比較時所耗的運算仍然會造成畫面的卡頓
 
 **那有沒有方法可以使React在重繪時，只針對Item的範圍重繪?**
-
-:::
 
 
 <br>
